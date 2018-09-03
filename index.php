@@ -28,15 +28,18 @@ class ACFAllObjectsBackend extends ACFAllObjects
 {
     public function __construct()
     {
-          add_action('acf/save_post', [$this, 'my_acf_save_post'], 9999); 
+      add_action('acf/save_post', [$this, 'my_acf_save_post'], 9999);
     }
 
     public function my_acf_save_post($post_id)
     {
-        if (empty($_POST['acf'])) {
+        if (! function_exists('get_fields')) {
             return;
         }
 
+        if (empty($_POST['acf'])) {
+            return;
+        }
         $re = get_fields($post_id);
         $this->setACFAllObjects($post_id, $re);
     }
@@ -85,6 +88,4 @@ class ACFAllObj {
 }
 
 
-if (function_exists('get_fields')) {
-    new ACFAllObjectsBackend();
-}
+new ACFAllObjectsBackend();
