@@ -14,7 +14,7 @@ How is work?
 ========
 After save acf in backend this plugin create record in Database(wp_options) with this pattern (acfAllObjects+post_id) as key
 and put all your fields data as whole object in value. then you instead of
-```php get_fields('foo', 'option')``` you can use ```php ACFAllObj::get('foo', 'option');```
+``` get_fields('foo', 'option')``` you can use ``` ACFAllObj::get('foo', 'option');```
 
 How to Use?
 ========
