@@ -60,15 +60,23 @@ class ACFAllObjectsBackend extends ACFAllObjects
 }
 
 class ACFAllObj {
-  public static function all($post_id)
+  public static function all($post_id = '')
   {
+      if ( !$post_id ) {
+        $post_id = get_the_id();
+      }
+    
       $newKey = "acfAllObjects_$post_id";
       $re = get_option($newKey, []);
       return json_decode($re);
   }
 
-  public static function get($key = '', $post_id)
+  public static function get($key = '', $post_id = '')
   {
+      if ( !$post_id ) {
+        $post_id = get_the_id();
+      }
+    
       if($post_id === 'option') {
         $post_id = 'options';
       }
